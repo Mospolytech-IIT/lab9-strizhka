@@ -17,6 +17,12 @@
     </form>
     <h2>Список постов</h2>
     <ul id="posts-list"></ul>
+    <div id="edit-post-modal" style="display: none;">
+        <input type="text" id="edit-title" placeholder="Заголовок">
+        <textarea id="edit-content" placeholder="Содержание"></textarea>
+        <button onclick="savePostEdit()">Сохранить</button>
+        <button onclick="closePostEdit()">Отмена</button>
+    </div>
 </body>
 <script src="main.js"></script>
 
