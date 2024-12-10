@@ -1,0 +1,16 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Backend",
+            "type": "shell",
+            "command": "uvicorn backend.main:app --reload",
+            "problemMatcher": [],
+            "detail": "Запуск backend сервера",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

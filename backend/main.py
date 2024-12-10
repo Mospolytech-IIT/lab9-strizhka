@@ -1,15 +1,34 @@
 """Модуль для инициализации БД и запуска FastAPI"""
-from models import Base
-from database import engine
+from backend.models import Base
+from backend.database import engine, SessionLocal
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from database import SessionLocal
-from crud import (
+from pydantic import BaseModel
+from backend.crud import (
     create_user, create_post, get_all_users, get_all_posts,
     update_user_email, update_post_content, delete_post, delete_user
 )
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class UserCreate(BaseModel):
+    username: str
+    email: str
+    password: str
+
+class PostCreate(BaseModel):
+    title: str
+    content: str
+    user_id: int
 
 def get_db():
     """Зависимость для получения сессии базы данных"""
@@ -20,16 +39,14 @@ def get_db():
         db.close()
 
 @app.post("/users/")
-def add_user(username: str, email: str, password: str, db: Session = Depends(get_db)):
+def add_user(user: UserCreate, db: Session = Depends(get_db)):
     """API эндпоинт для добавления пользователя"""
-    return create_user(db, username, email, password)
-# Пример: 
-# POST /users/?username=testuser&email=test@test.com&password=123456
+    return create_user(db, user.username, user.email, user.password)
 
 @app.post("/posts/")
-def add_post(title: str, content: str, user_id: int, db: Session = Depends(get_db)):
+def add_post(post: PostCreate, db: Session = Depends(get_db)):
     """API эндпоинт для добавления поста"""
-    return create_post(db, title, content, user_id)
+    return create_post(db, post.title, post.content, post.user_id)
 
 @app.get("/users/")
 def list_users(db: Session = Depends(get_db)):

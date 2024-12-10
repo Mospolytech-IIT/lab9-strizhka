@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Посты</title>
+</head>
+
+<body>
+    <h1>Посты</h1>
+    <form id="create-post-form">
+        <input type="text" id="title" placeholder="Заголовок" required>
+        <textarea id="content" placeholder="Содержание" required></textarea>
+        <input type="number" id="user-id" placeholder="ID пользователя" required>
+        <button type="submit">Создать</button>
+    </form>
+    <h2>Список постов</h2>
+    <ul id="posts-list"></ul>
+</body>
+<script src="main.js"></script>
+
+</html>

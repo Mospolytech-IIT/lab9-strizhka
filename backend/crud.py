@@ -1,7 +1,7 @@
 """Модуль CRUD"""
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from models import User, Post
+from backend.models import User, Post
 
 def create_user(session: Session, username: str, email: str, password: str) -> User:
     """Создание нового пользователя"""
