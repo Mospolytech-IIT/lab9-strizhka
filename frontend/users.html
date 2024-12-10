@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пользователи</title>
+</head>
+
+<body>
+    <h1>Пользователи</h1>
+    <form id="create-user-form">
+        <input type="text" id="username" placeholder="Имя пользователя" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <button type="submit">Создать</button>
+    </form>
+    <h2>Список пользователей</h2>
+    <ul id="users-list"></ul>
+    <div id="edit-user-modal" style="display: none;">
+        <input type="text" id="edit-username" placeholder="Имя пользователя">
+        <input type="email" id="edit-email" placeholder="Email">
+        <input type="password" id="edit-password" placeholder="Пароль">
+        <button onclick="saveUserEdit()">Сохранить</button>
+        <button onclick="closeUserEdit()">Отмена</button>
+    </div>
+</body>
+<script src="main.js"></script>
+
+</html>
